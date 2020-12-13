@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class ListaNumeros 
 {
     // definir atributos
-    private int pos, pos2;
+    private int pos;
     private int[] lista;
     /**
      * Constructor de la clase ListaNumeros 
@@ -22,7 +22,6 @@ public class ListaNumeros
      */
     public ListaNumeros(int n) {
         pos = 0;
-        pos2 = 1;
         lista = new int[n];
     }
 
@@ -40,7 +39,6 @@ public class ListaNumeros
             }
             lista[0] = numero;
             pos++;
-            pos2++;
             return true;
         }
         return false;
@@ -116,9 +114,21 @@ public class ListaNumeros
      *  
      */
     public int[] buscarPosicionesDe(int numero) {
-
-        return null;
-
+        int cantidadNumero = 0;
+        for(int i = 0; i < lista.length; i++){
+            if(lista[i] == numero){
+                cantidadNumero++;
+            }
+        }
+        int posicion = 0;
+        int[] aPosicion = new int[cantidadNumero];
+        for(int j = 0; j < lista.length; j++){
+            if(lista[j] == numero){
+                aPosicion[posicion] = j;
+                posicion++;
+            }
+        }
+        return aPosicion;
     }
 
     /**
