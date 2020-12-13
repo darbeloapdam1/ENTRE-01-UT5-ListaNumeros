@@ -43,7 +43,7 @@ public class ListaNumeros
         }
         return false;
     }
-    
+
     /**
      * devuelve true si la lista está completa, false en otro caso
      * Hacer sin if
@@ -99,7 +99,6 @@ public class ListaNumeros
         return rep;
     }
 
-
     /**
      * Mostrar en pantalla la lista
      */
@@ -143,19 +142,24 @@ public class ListaNumeros
      * 
      */
     public int buscarBinario(int numero) {
-
-        return 0;
-
+        int[] copia = new int[lista.length];
+        copia = Arrays.copyOf(lista, (lista.length - 1));
+        Arrays.sort(copia, 0, (copia.length -1));
+        int posicion = Arrays.binarySearch(copia, numero);
+        if(posicion > 0){
+            return posicion;
+        }else{
+            return -1;
+        }
     }
-
 
     /**
      * borra el primer elemento de la lista
      */
     public void borrarPrimero() {
-
+        
     }
-    
+
     /**
      *  Invierte cada uno de los grupos de n elementos que hay en lista
      *  
@@ -168,7 +172,7 @@ public class ListaNumeros
     public void invertir(int n) {
 
     }
-   
+
     /**
      * devuelve un ragged array de 2 dimensiones con tantas filas como valores
      * tenga el atributo lista y rellena el array de la forma indicada
