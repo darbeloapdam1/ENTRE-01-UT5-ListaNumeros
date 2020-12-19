@@ -3,7 +3,7 @@
  * La clase representa a una lista de 
  * números enteros
  * 
- * @author - Diego Arbeloam
+ * @author - Diego Arbeloa
  * 
  */
 import java.util.Arrays;
@@ -23,11 +23,6 @@ public class ListaNumeros
     public ListaNumeros(int n) {
         pos = 0;
         lista = new int[n];
-    }
-
-    public ListaNumeros() {
-        pos = 0;
-        lista = new int[]{1,2,3,4,5,6,7,8,9,10,11,12};
     }
 
     /**
@@ -177,21 +172,18 @@ public class ListaNumeros
      */
     public void invertir(int n) {
         int grupos = lista.length / n;
-        int veces = grupos / 2;
         int izq = 0;
-        int dch = grupos - 1;
-        int contador = 1;
-        for(int i = 0; i < grupos; i++){
-            for(int j = 0; j < veces; j++){
+        int dch = n - 1;
+        for(int i = 1; i <= grupos; i++){
+            for(int j = 0; j < n / 2; j++){
                 int aux = lista[izq];
                 lista[izq] = lista[dch];
                 lista[dch] = aux;
                 izq++;
                 dch--;
             }
-            contador++;
-            izq = (grupos * contador) - 1;
-            dch = izq + (grupos - 1);
+            izq = n * i;
+            dch = (n * (i + 1)) - 1;
         }
     }
 
@@ -212,7 +204,7 @@ public class ListaNumeros
             array[0][0] = 1;
             array[1][0] = 1;
             array[1][1] = 1;
-        }else if(lista.length > 2){
+        }else{
             array[0] = new int[1];
             array[1] = new int[2];
             array[0][0] = 1;
