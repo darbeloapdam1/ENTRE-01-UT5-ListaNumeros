@@ -10,7 +10,6 @@ import java.util.Arrays;
 
 public class ListaNumeros 
 {
-    // definir atributos
     private int pos;
     private int[] lista;
     /**
@@ -235,12 +234,42 @@ public class ListaNumeros
             lista.addElemento(valores[i]);
         }
         System.out.println(lista.toString());
+        System.out.println();
 
         System.out.println("--- buscarPosiciones() -------");
         int numero = 21;
         System.out.println(lista.toString());
         System.out.println("\t" + numero + " aparece en posiciones ");
-        // seguir completando
-
+        int[] busqueda = lista.buscarPosicionesDe(numero);
+        for(int i = 0; i < busqueda.length; i++){
+            System.out.print("" + busqueda[i]);
+        }
+        System.out.println();
+        
+        System.out.println("---buscarBinario()---");
+        if(lista.buscarBinario(numero) >= 0){
+            System.out.println("El número está en la lista");
+        }else{
+            System.out.println("El número no está en la lista");
+        }
+        System.out.println();
+        
+        System.out.println("---invertir()---");
+        System.out.println("Lista sin invertir:");
+        System.out.println(lista.toString());
+        System.out.println("Lista invertida con grupos de 4 elementos y " + lista.getTotalNumeros() + " elementos en total");
+        lista.invertir(4);
+        System.out.println(lista.toString());
+        System.out.println();
+        
+        System.out.println("---toArray2D()---\n");
+        int[][] array2d = lista.toArray2D();
+        for(int i = 0; i < array2d.length; i++){
+            System.out.print("Fila " + (i + 1) + ":");
+            for(int j = 0; j < array2d[i].length; j++){
+                System.out.print(array2d[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 }
