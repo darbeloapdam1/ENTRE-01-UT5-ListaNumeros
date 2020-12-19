@@ -3,7 +3,7 @@
  * La clase representa a una lista de 
  * números enteros
  * 
- * @author - 
+ * @author - Diego Arbeloam
  * 
  */
 import java.util.Arrays;
@@ -23,6 +23,11 @@ public class ListaNumeros
     public ListaNumeros(int n) {
         pos = 0;
         lista = new int[n];
+    }
+
+    public ListaNumeros() {
+        pos = 0;
+        lista = new int[]{1,2,3,4,5,6,7,8,9,10,11,12};
     }
 
     /**
@@ -71,9 +76,7 @@ public class ListaNumeros
      * Vacía la lista
      */
     public void vaciarLista() {
-        for(int i = 0; i < pos; i++){
-            lista[i] = 0;
-        }
+        pos = 0;
     }
 
     /**
@@ -144,7 +147,7 @@ public class ListaNumeros
     public int buscarBinario(int numero) {
         int[] copia = new int[lista.length];
         copia = Arrays.copyOf(lista, (lista.length - 1));
-        Arrays.sort(copia, 0, (copia.length -1));
+        Arrays.sort(copia);
         int posicion = Arrays.binarySearch(copia, numero);
         if(posicion > 0){
             return posicion;
@@ -157,7 +160,10 @@ public class ListaNumeros
      * borra el primer elemento de la lista
      */
     public void borrarPrimero() {
-        
+        pos--;
+        for(int i = 0; i < pos; i++){
+            lista[i] = lista[i + 1];
+        }        
     }
 
     /**
@@ -170,7 +176,23 @@ public class ListaNumeros
      *  
      */
     public void invertir(int n) {
-
+        int grupos = lista.length / n;
+        int veces = grupos / 2;
+        int izq = 0;
+        int dch = grupos - 1;
+        int contador = 1;
+        for(int i = 0; i < grupos; i++){
+            for(int j = 0; j < veces; j++){
+                int aux = lista[izq];
+                lista[izq] = lista[dch];
+                lista[dch] = aux;
+                izq++;
+                dch--;
+            }
+            contador++;
+            izq = (grupos * contador) - 1;
+            dch = izq + (grupos - 1);
+        }
     }
 
     /**
@@ -180,8 +202,32 @@ public class ListaNumeros
      * 
      */
     public int[][] toArray2D() {
-
-        return null;
+        int[][] array = new int[lista.length][];
+        if(lista.length == 1){
+            array[0] = new int[1];
+            array[0][0] = 1;
+        }else if(lista.length == 2){
+            array[0] = new int[1];
+            array[1] = new int[2];
+            array[0][0] = 1;
+            array[1][0] = 1;
+            array[1][1] = 1;
+        }else if(lista.length > 2){
+            array[0] = new int[1];
+            array[1] = new int[2];
+            array[0][0] = 1;
+            array[1][0] = 1;
+            array[1][1] = 1;
+            for(int i = 2; i < lista.length; i++){
+                array[i] = new int[i + 1];
+                array[i][0] = 1;
+                array[i][i] = 1;
+                for(int j = 1; j < i; j++){
+                    array[i][j] = array[i - 1][j - 1] + array[i - 1][j];
+                }
+            }
+        }
+        return array;
     }
 
     /**
